@@ -1,4 +1,4 @@
-def sonsToString(s):
+def son2str(s):
     return ' '.join([str(v) for v in s])
 
 
@@ -10,6 +10,7 @@ def isGoal(s):
 
 
 def generateSons(s):
+
     listOfSons = []
 
     # esvaziar o pote 1
@@ -28,12 +29,12 @@ def generateSons(s):
     state = [s[0], 5]
     listOfSons.append(state)
 
-    # veter pote 1
-    if s[0] >= 5 - s[1]:
+    # verter pote 1 no pote 2
+    if s[0] >= 5-s[1]:
         state = [s[0]-(5-s[1]), 5]
     else:
         state = [0, s[1] + s[0]]
-        listOfSons.append(state)
+    listOfSons.append(state)
 
     # verter pote 2 no pote 1
     if s[1] <= 7-s[0]:
@@ -52,24 +53,24 @@ def bfs(start):
 
     while len(candidates) > 0:
         father = candidates[0]
-        print('Lista de candidatos: ', candidates)
+        print("Lista de candidatos: ", candidates)
         del candidates[0]
-        print('Visitado: ', father)
+        print("Visitado: ", father)
         if isGoal(father):
             res = []
             node = father
             while node != start:
                 res.append(node)
-                node = fathers[sonsToString(node)]
+                node = fathers[son2str(node)]
             res.append(start)
             res.reverse()
-            print('SOLUÇÃO: ', res)
+            print("Solucao encontrada: ", res)
 
         for son in generateSons(father):
             if son not in visited:
-                print('Enfileirado:', son, father)
+                print("Enfileirado: ", son, father)
                 visited.append(son)
-                fathers[sonsToString(son)] = father
+                fathers[son2str(son)] = father
                 candidates.append(son)
 
 
