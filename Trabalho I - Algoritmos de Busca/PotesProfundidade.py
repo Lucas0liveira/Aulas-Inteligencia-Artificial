@@ -23,13 +23,13 @@ def generateSons(s):
 
     # encher o pote 1
     state = [7, s[1]]
-    if s[0] == 0:   #só enche se estiver vazio
+    if s[0] == 0 and s[1]!=5:   #só enche se estiver vazio e não deixa os dois cheios
         t.append(state)
         print("filho: ",state)
 
     # encher o pote 2
     state = [s[0], 5]
-    if s[1] == 0:
+    if s[1] == 0 and s[0]!=7:
         t.append(state)
         print("filho: ",state)
 
